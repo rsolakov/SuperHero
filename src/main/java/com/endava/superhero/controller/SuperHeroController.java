@@ -28,6 +28,7 @@ public class SuperHeroController {
         Optional<SuperHero> newSuperHero = superHeroService.findById(id);
         if (newSuperHero.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            //TODO:
         }
         SuperHeroDto mappedName = modelMapper.map(newSuperHero, SuperHeroDto.class);
         return ResponseEntity.ok(mappedName);
