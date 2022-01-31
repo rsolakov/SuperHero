@@ -13,9 +13,9 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Retention(RUNTIME)
 @Constraint(validatedBy = com.endava.superhero.exception.validator.SuperHeroValidator.class)
 @Documented
-public @interface SuperHero {
+public @interface SuperHeroName {
 
-    String message() default "Not a valid hero email.";
+    String message() default "Not a valid hero name!!!";
 
     Class<?>[] groups() default {};
 

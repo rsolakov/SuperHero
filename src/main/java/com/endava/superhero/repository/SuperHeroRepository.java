@@ -10,4 +10,6 @@ import java.util.Optional;
 @Repository
 public interface SuperHeroRepository extends JpaRepository<SuperHero, Long> {
 
+    @Query("select s from SuperHero s where s.superHeroName = ?1")
+    Optional<Object> findBySuperHeroName(String superHeroName);
 }
