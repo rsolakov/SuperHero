@@ -1,6 +1,7 @@
 package com.endava.superhero.controller;
 
 import com.endava.superhero.dto.SuperHeroDto;
+import com.endava.superhero.exception.SuperHeroNotFound;
 import com.endava.superhero.model.SuperHero;
 import com.endava.superhero.service.SuperHeroService;
 import org.modelmapper.ModelMapper;
@@ -24,11 +25,10 @@ public class SuperHeroController {
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<SuperHeroDto> findBySuperHeroName (@PathVariable(value = "id") Long id) {
+    ResponseEntity<SuperHeroDto> findBySuperHeroName (@PathVariable(value = "id") Long id) throws SuperHeroNotFound {
         Optional<SuperHero> newSuperHero = superHeroService.findById(id);
         if (newSuperHero.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-            //TODO:
+            throw new SuperHeroNotFound(id);
         }
         SuperHeroDto mappedName = modelMapper.map(newSuperHero, SuperHeroDto.class);
         return ResponseEntity.ok(mappedName);
