@@ -1,6 +1,6 @@
 package com.endava.superhero.dto;
 
-import com.endava.superhero.exception.validator.SuperHero;
+import com.endava.superhero.exception.validator.SuperHeroName;
 import com.endava.superhero.model.Mission;
 
 import javax.validation.constraints.*;
@@ -18,9 +18,11 @@ public class SuperHeroDto {
     @Size(min = 3)
     private String lastName;
     @NotNull
+    @SuperHeroName
     @Size(min = 4)
     private String superHeroName;
     @NotNull
+    @Email
     private String email;
     @NotNull
     @Past

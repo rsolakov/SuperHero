@@ -1,21 +1,24 @@
 package com.endava.superhero.exception.validator;
 
-import com.endava.superhero.dto.SuperHeroDto;
+import com.endava.superhero.service.SuperHeroService;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class SuperHeroValidator implements ConstraintValidator<SuperHero, String> {
+public class SuperHeroValidator implements ConstraintValidator<SuperHeroName, String> {
 
+    private final SuperHeroService superHeroService;
 
-    @Override
-    public void initialize(SuperHero constraintAnnotation) {
-        ConstraintValidator.super.initialize(constraintAnnotation);
+    public SuperHeroValidator(SuperHeroService superHeroService) {
+        this.superHeroService = superHeroService;
     }
 
+
     @Override
-    public boolean isValid(String value, ConstraintValidatorContext context) {
-        return false;
-        ///TODO:
+    public boolean isValid(String SuperHeroName, ConstraintValidatorContext context) {
+        if (SuperHeroName == null) {
+            return true;
+        }
+        return superHeroService.isNameUnique(SuperHeroName);
     }
 }

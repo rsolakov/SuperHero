@@ -4,8 +4,6 @@ import com.endava.superhero.model.SuperHero;
 import com.endava.superhero.repository.SuperHeroRepository;
 import com.endava.superhero.service.SuperHeroService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -28,5 +26,10 @@ public class SuperHeroServiceImpl implements SuperHeroService {
     @Override
     public Optional<SuperHero> findById(Long id) {
         return superHeroRepository.findById(id);
+    }
+
+    @Override
+    public boolean isNameUnique(String superHeroName) {
+        return superHeroRepository.findBySuperHeroName(superHeroName).isEmpty();
     }
 }

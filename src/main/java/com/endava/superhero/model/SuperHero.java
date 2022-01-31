@@ -24,7 +24,7 @@ public class SuperHero {
     @Column(name = "last_name")
     private String lastName;
     @NotNull
-    @Column(name = "super_hero_name", unique = true)
+    @Column(name = "super_hero_name")
     private String superHeroName;
     @NotNull
     @Column(unique = true)
